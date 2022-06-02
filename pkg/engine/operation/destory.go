@@ -33,6 +33,8 @@ func NewDestroyGraph(resource models.Resources) (*dag.AcyclicGraph, status.Statu
 	return graph, s
 }
 
+// Destroy will delete all resources in this request. The whole process is similar to the operation Apply,
+// but every node's execution is deleting the resource.
 func (o *Operation) Destroy(request *DestroyRequest) (st status.Status) {
 	defer func() {
 		close(o.MsgCh)

@@ -27,6 +27,8 @@ type PreviewResponse struct {
 	Order *ChangeOrder
 }
 
+// Preview compute all changes between resources in request and the actual infrastructure.
+// The whole process is similar to the operation Apply, but the execution of each node is mocked and will not actually invoke the Runtime
 func (o *Operation) Preview(request *PreviewRequest, operation Type) (rsp *PreviewResponse, s status.Status) {
 	defer func() {
 		if e := recover(); e != nil {

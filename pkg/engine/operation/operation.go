@@ -15,21 +15,38 @@ import (
 	"kusionstack.io/kusion/pkg/util"
 )
 
+// Operation contains values that is useful for all operations
 type Operation struct {
+	// OperationType represents the Type of this operation
 	OperationType Type
-	StateStorage  states.StateStorage
-	// CtxResourceIndex represents resources updated by func apply
+
+	// StateStorage represents the storage where state will be saved during this operation
+	StateStorage states.StateStorage
+
+	// CtxResourceIndex represents resources updated by this operation
 	CtxResourceIndex map[string]*models.Resource
-	// PriorStateResourceIndex represents prior states.StateStorage state
+
+	// PriorStateResourceIndex represents resource state saved during the last operation
 	PriorStateResourceIndex map[string]*models.Resource
+
 	// StateResourceIndex represents resources that will be saved in states.StateStorage
 	StateResourceIndex map[string]*models.Resource
-	// Order contains id to action of resource node in preview order
-	Order       *ChangeOrder
-	Runtime     runtime.Runtime
-	MsgCh       chan Message
+
+	// Order is resources' change order during this operation
+	Order *ChangeOrder
+
+	// Runtime is the resource infrastructure runtime of this operation
+	Runtime runtime.Runtime
+
+	// MsgCh is used to send operation status like Success, Failed or Skip to Kusion CTl,
+	// and this message will be displayed in the terminal
+	MsgCh chan Message
+
+	// resultState is the final State build by this operation, and this State will be saved in the StateStorage
 	resultState *states.State
-	lock        *sync.Mutex
+
+	// lock is the operation-wide mutex
+	lock *sync.Mutex
 }
 
 type Message struct {
@@ -103,7 +120,7 @@ func (o *Operation) UpdateState(resourceIndex map[string]*models.Resource) error
 	state.Serial += 1
 	state.Resources = nil
 
-	res := []models.Resource{}
+	res := make([]models.Resource, len(resourceIndex))
 	for key := range resourceIndex {
 		// {key -> nil} represents Deleted action
 		if resourceIndex[key] == nil {

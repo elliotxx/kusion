@@ -44,6 +44,11 @@ func NewApplyGraph(m *models.Spec, priorState *states.State) (*dag.AcyclicGraph,
 	return graph, s
 }
 
+// Apply means turn all actual infra resources into the desired state described in the request by invoking a specified Runtime.
+// Like other operations, Apply has 3 main steps during the whole process.
+// 1. parse resources and their relationship to build a DAG and should take care of those resources that will be deleted
+// 2. walk this DAG and execute all graph nodes concurrently, besides the entire process should follow dependencies in this DAG
+// 3. during the execution of each node, it will invoke different runtime according to the resource type
 func (o *Operation) Apply(request *ApplyRequest) (rsp *ApplyResponse, st status.Status) {
 	log.Infof("engine Apply start!")
 
