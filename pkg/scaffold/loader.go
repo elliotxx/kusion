@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"sync"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
+	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
@@ -22,7 +22,9 @@ type projectTemplateLoader struct {
 
 // LoadProjectTemplate reads a project definition from a file.
 func LoadProjectTemplate(path string) (*ProjectTemplate, error) {
-	contract.Require(path != "", "path")
+	if path == "" {
+		return nil, errors.Errorf("%s is empty", path)
+	}
 
 	return projectTemplateSingleton.load(path)
 }

@@ -11,9 +11,10 @@ import (
 	"testing"
 
 	"bou.ke/monkey"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/gitutil"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/src-d/go-git.v4/plumbing"
+
+	"kusionstack.io/kusion/third_party/pulumi/gitutil"
 )
 
 const (
