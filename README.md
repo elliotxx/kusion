@@ -18,6 +18,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/KusionStack/kusion/badge.svg)](https://coveralls.io/github/KusionStack/kusion)
 [![Go Reference](https://pkg.go.dev/badge/github.com/KusionStack/kusion.svg)](https://pkg.go.dev/github.com/KusionStack/kusion)
 [![license](https://img.shields.io/github/license/KusionStack/kusion.svg)](https://github.com/KusionStack/kusion/blob/main/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Felliotxx%2Fkusion.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Felliotxx%2Fkusion?ref=badge_shield)
 </div>
 
 # Kusion
@@ -95,3 +96,7 @@ docker pull kusionstack/kusion:latest
 # 🎖︎ Contribution Guide
 
 Kusion is still in the initial stage, and there are many capabilities that need to be made up, so we welcome everyone to participate in construction with us. Visit the [Contribution Guide](docs/contributing.md) to understand how to participate in the contribution KusionStack project. If you have any questions, please [Submit the Issue](https://github.com/KusionStack/kusion/issues).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Felliotxx%2Fkusion.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Felliotxx%2Fkusion?ref=badge_large)
